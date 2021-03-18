@@ -1,4 +1,6 @@
 <?php
-echo "hello";
+echo "hello guys";
+
+echo "name you passed is= ".$_GET['name'];
 
 ?>
