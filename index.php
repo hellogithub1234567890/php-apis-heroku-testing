@@ -1,10 +1,30 @@
 <?php
-echo "hello guys";
+$servername = "eu-az-sql-serv1.database.windows.net";
+$username = "u9rae5khdldm5mi";
+$password = "O%EVD2h0Bn@dPSrb7IrM%Df3Q";
+$dbname = "dx1tqvr61l3y3ym";
 
-echo "name you passed is= ".$_GET['name'];
-
-$var i=0;
-while($i<100){
-  echo "hello ".$i;
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
+
+// sql to create table
+$sql = "CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Table MyGuests created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$conn->close();
 ?>
